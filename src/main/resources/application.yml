@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    username: sa 
+    password:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest 
+    password: guest
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mail22@mail.com
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+mail:
+  from: mail22@mail.com
+  to: to-mail@mail.com
+  
+route:
+  from: 
+    rabbit-mq: rabbitmq://localhost:5672/myExchange?queue=myQueue&exchangeType=topic&autoDelete=false&connectionFactory=#connectionFactory
+  to: 
+    db: jdbc:dataSourceH2
